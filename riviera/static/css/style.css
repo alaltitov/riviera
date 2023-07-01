@@ -1,0 +1,159 @@
+::-webkit-input-placeholder {
+   font-size: 13px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 13px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 13px!important;
+}
+
+/** {
+ border: solid 1px red;
+}*/
+
+body {
+    font-family: PF Agora Sans Pro, sans-serif!important;
+}
+
+.icon {
+    width: 100%;
+    max-width: 70px;
+    height: auto;
+}
+
+.icon:hover {
+    transform: scale3d(1.2, 1.2, 0.5);
+}
+
+.img_info {
+    width: 100%;
+    max-width: 40px;
+    height: auto;
+}
+
+.data_owner_name {
+    font-family: Roboto, sans-serif;
+    font-size: clamp(15px, 2.5vw, 20px);
+}
+
+.data_owner {
+    font-family: Roboto, sans-serif;
+    font-size: clamp(13px, 2vw, 15px);
+}
+
+.owner_text {
+    font-size: 15px !important;
+}
+
+.popper-inner {
+    white-space: pre-line !important;
+    font-size: 10px;
+}
+
+.link_history {
+    color: black;
+    font-size: 12px;
+}
+
+.errors {
+    color: red;
+    font-size: 12px;
+}
+
+.balance {
+    font-size: clamp(20px, 2.5vw, 25px);
+    vertical-align: center;
+}
+
+.balance_text {
+    font-size: clamp(12px, 2vw, 14px);
+    vertical-align: center;
+}
+
+.pay_text_head {
+    font-family: PF Agora Sans Pro Thin;
+    font-size: 15px;
+    color: #808080;
+}
+
+.pay_text {
+    font-family: PF Agora Sans Pro Thin;
+    font-size: 15px;
+}
+
+.label_pay {
+    font-family: PF Agora Sans Pro Thin;
+    font-size: 18px;
+}
+
+.utility_link {
+     text-decoration: none;
+     color: black;
+}
+
+.icon_menu {
+    width: 100%;
+    max-width: 30px;
+    height: auto;
+}
+
+.icon_menu:hover {
+    transform: scale3d(1.2, 1.2, 0.5);
+}
+
+.nav-link {
+  color: grey !important;
+  font-size: clamp(10px, 2vw, 15px);
+}
+
+.nav-link:focus {
+  color: black !important;
+  font-size: clamp(10px, 2vw, 15px);
+}
+
+.table_row {
+    font-size: clamp(8px, 2vw, 15px);
+}
+
+img.icon_table {
+    display: block;
+    max-height: auto;
+    max-width: 30px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.head_table_2 {
+    display: block;
+    text-align: end;
+    font-size: clamp(8px, 2vw, 15px);
+}
+
+.head_table_1{
+    display: block;
+    text-align: center;
+    font-size: clamp(8px, 2vw, 15px);
+}
+
+.text_about {
+    display: block;
+    text-align: center;
+    font-size: clamp(10px, 2vw, 15px);
+}
+
+small.text_houses {
+    display: block;
+    font-size: clamp(10px, 2vw, 15px);
+}
+
+.text_utility {
+    display: block;
+    font-size: clamp(12px, 2.5vw, 15px);
+}
+
+.text_footer {
+    display: block;
+    font-size: clamp(10px, 2vw, 15px);
+}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row p-5 justify-content-center">
+        <div class="col-sm-10 col-md-10 col-lg-8 col-xl-7">
+            <div class="row justify-content-center">
+                <div class="col-sm-10 col-md-8 col-lg-8 col-xl-8">
+                    <h1 class="text-center">Оплата по счетчикам</h1>
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-8 col-xl-8">
+                    <form id="form_pay" action="" method="post" novalidate>
+                        {{ form.csrf_token() }}
+                        <div class="col-auto">
+                            <p class="label_pay text-center">{{ form.payment.label() }}</p>
+                            {% if form.errors['payment'] %}
+                            {{ form.payment(class_="form-control text-center border-danger") }}
+                            <div class="errors text-center">{{ form.errors['payment'][0] }}</div>
+                            {% else %}
+                            {{ form.payment() }}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text text-center p-3">
+            <a class="utility_link" type="button" data-bs-toggle="collapse" data-bs-target="#utility_data" aria-expanded="false">Расчет платежа по последним показаниям</a>
+        </div>
+        <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
+            <div class="collapse" id="utility_data">
+                {% if utility |length < 2 %}
+                <p class="pay_text text-center">Показания пока не передавались</p>
+                {% else %}
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Показания электричества</span><br>
+                        <span class="pay_text">{{ utility[-1].value_electro }} - {{ utility[-2].value_electro }} = {{ utility[-1].value_electro - utility[-2].value_electro }} м³</span>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Начислено по счетчику</span><br>
+                        <span class="pay_text">{{ utility[-1].value_electro - utility[-2].value_electro }} м³ x {{ service[0].tariff / 100 }} р. = {{ (utility[-1].value_electro - utility[-2].value_electro) * service[0].tariff / 100 }} р.</span>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Показания газа</span><br>
+                        <span class="pay_text">{{ utility[-1].value_gas }} - {{ utility[-2].value_gas }} = {{ utility[-1].value_gas - utility[-2].value_gas }} м³</span>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Начислено по счетчику</span><br>
+                        <span class="pay_text">{{ utility[-1].value_gas - utility[-2].value_gas }} м³ x {{ service[1].tariff / 100 }} р. = {{ (utility[-1].value_gas - utility[-2].value_gas) * service[1].tariff / 100 }} р.</span>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Показания воды</span><br>
+                        <span class="pay_text">{{ utility[-1].value_water }} - {{ utility[-2].value_water }} = {{ utility[-1].value_water - utility[-2].value_water }} м³</span>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <span class="pay_text_head">Начислено по счетчику</span><br>
+                        <span class="pay_text">{{ utility[-1].value_water - utility[-2].value_water }} м³ x {{ service[2].tariff / 100 }} р. = {{ (utility[-1].value_water - utility[-2].value_water) * service[2].tariff / 100 }} р.</span>
+                    </div>
+                    <p class="pay_text_head">* к счёту добавляется {{ service[3].tariff / 100 }} р. за вывоз мусора</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center mx-5">
+    <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3">
+        <button form="form_pay" type="submit" class="btn btn-sm btn-dark" style="width: 100%">Оплатить</button>
+    </div>
+</div>
+<div class="row justify-content-center py-5">
+    <div class="col-sm-10 col-md-7 col-lg-5 col-xl-5 m-0">
+        <div class="text-center px-5" style="font-size: 12px;">
+            Вы будете перенаправлены на страницу банка для ввода данных карты
+        </div>
+    </div>
+</div>
+{% endblock %}

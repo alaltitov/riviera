@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container shadow-lg">
+    <div class="row align-items-center p-3">
+        <div class="d-flex justify-content-between">
+                <div>
+                    <div class="data_owner_name">
+                        <i class="bi bi-person-vcard pe-2" style="color: black;"></i>
+                        {{ profile.name }}
+                    </div><br>
+                    <div class="data_owner text-secondary">
+                        <i class="bi bi-key-fill pe-2" style="color: black;"></i>
+                        {{ ('0000000' + profile.account)[-7:] }}
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balance text-center">
+                        {% if profile.balance < 0 %}
+                        <div class="negative" style="color: red;">{{ profile.balance / 100}} р.</div>
+                        {% else %}
+                        <div class="positive" style="color: green;">{{ profile.balance / 100}} р.</div>
+                        {% endif %}
+                    </div>
+                    <div class="text-end">
+                        <a href="{{ url_for('pay') }}">
+                            <button type="button" class="btn btn-sm btn-dark">
+                                <i class="bi bi-credit-card pe-2"></i>Оплатить
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 pt-4 p-3">
+    {% block content %} {% endblock %}
+</div>
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
+
+{% endblock %}

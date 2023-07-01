@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container">
+        <div class="text_about" style="text-align: justify; text-indent: 20px;">
+            {{ texts[0].content }}
+        </div>
+        <div class="col-8 mx-auto"><hr class="my-4" style="color: black;"></div>
+        <h5 class="text-center">Расположение</h5>
+        <div class="text_about" style="text-align: justify; text-indent: 20px;">
+            {{ texts[1].content }}
+        </div>
+        <div class="col-8 mx-auto"><hr class="my-4" style="color: black;"></div>
+        <h5 class="text-center">Инфраструктура</h5>
+        <div class="text_about" style="text-align: justify; text-indent: 20px;">
+            {{ texts[2].content }}
+        </div>
+        <div class="col-8 mx-auto"><hr class="my-4" style="color: black;"></div>
+        <h5 class="text-center">Коммуникации</h5>
+        <div class="text_about" style="text-align: justify; text-indent: 20px;">
+            {{ texts[3].content }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

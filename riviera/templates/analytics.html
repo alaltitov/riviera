@@ -1,0 +1,55 @@
+{% extends 'account.html' %}
+
+{% block content %}
+
+{% if not flag %}
+
+<div class="container-fluid text-center">
+    показания не передавались
+</div>
+
+{% else %}
+<div class="row justify-content-center">
+    <div class="col-10">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="electro-tab" data-bs-toggle="tab" data-bs-target="#electro"
+                   type="button" role="tab" aria-controls="electro" aria-selected="true"
+                   href="{{ url_for('analytics') }}">Электроэнергия</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="gas-tab" data-bs-toggle="tab" data-bs-target="#gas"
+                   type="button" role="tab" aria-controls="gas" aria-selected="false"
+                   href="{{ url_for('analytics') }}">Газ</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="water-tab" data-bs-toggle="tab" data-bs-target="#water"
+                   type="button" role="tab" aria-controls="water" aria-selected="false"
+                   href="{{ url_for('analytics') }}">Водоснабжение</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="electro" role="tabpanel" aria-labelledby="electro-tab" tabindex="0">
+                <div class="box_figure text-center">
+                    <img src="data:image/svg+xml;base64,{{ data_electro }}" class="img-fluid" alt="figure">
+                </div>
+            </div>
+            <div class="tab-pane" id="gas" role="tabpanel" aria-labelledby="gas-tab" tabindex="0">
+                <div class="box_figure text-center">
+                    <img src="data:image/svg+xml;base64,{{ data_gas }}" class="img-fluid" alt="figure">
+                </div>
+            </div>
+            <div class="tab-pane" id="water" role="tabpanel" aria-labelledby="water-tab" tabindex="0">
+                <div class="box_figure text-center">
+                    <img src="data:image/svg+xml;base64,{{ data_water }}" class="img-fluid" alt="figure">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}

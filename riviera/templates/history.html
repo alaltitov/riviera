@@ -1,0 +1,102 @@
+{% extends 'account.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8">
+        <ul class="nav nav-tabs" id="history" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="utility-tab" data-bs-toggle="tab" data-bs-target="#utility"
+                   type="button" role="tab" aria-controls="utility" aria-selected="true"
+                   href="{{ url_for('analytics') }}">Показания</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="balance-tab" data-bs-toggle="tab" data-bs-target="#balance"
+                   type="button" role="tab" aria-controls="balance" aria-selected="false"
+                   href="{{ url_for('analytics') }}">Баланс</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="utility" role="tabpanel" aria-labelledby="utility-tab" tabindex="0">
+                <div class="col">
+                    <div class="table-responsive p-3">
+                            <table class="table table-sm table-striped" style="word-break: break-all;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><small class="head_table_1">Дата</small></th>
+                                        <th scope="col"><img class="icon_table" src="{{ url_for('static', filename='images/electro.svg') }}"></th>
+                                        <th scope="col"><img class="icon_table" src="{{ url_for('static', filename='images/gas.svg') }}"></th>
+                                        <th scope="col"><img class="icon_table" src="{{ url_for('static', filename='images/water.svg') }}"></th>
+                                        <th scope="col"><small class="head_table_2">Сумма</small></th>
+                                        <th scope="col"><small class="head_table_1">Статус</small></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set summ = namespace(arg=balance_sum) %}
+                                    {% for i in utility[1:] %}
+                                    <tr>
+                                        <th scope="row"><div class="table_row text-center">{{ i.date.strftime('%d-%m-%Y') }}</div></th>
+                                        <td><div class="table_row text-end">{{ i.value_electro }}</div></td>
+                                        <td><div class="table_row text-end">{{ i.value_gas }}</div></td>
+                                        <td><div class="table_row text-end">{{ i.value_water }}</div></td>
+                                        <td><div class="table_row text-end">{{ i.summ / 100 }} p.</div></td>
+                                        {% if summ.arg - i.summ |int >= 0 %}
+                                            <td class="table_row text-success text-center">оплачено</td>
+                                        {% else %}
+                                            <td class="table_row text-danger text-center">не оплачено</td>
+                                        {% endif %}
+                                        {% set summ.arg = (summ.arg - i.summ |int) %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="balance" role="tabpanel" aria-labelledby="balance-tab" tabindex="0">
+                <div class="col">
+                    <div class="table-responsive p-3">
+                        <table class="table table-sm table-striped" style="word-break: break-all;">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><small class="head_table_1">Дата</small></th>
+                                    <th scope="col"><small class="head_table_2">Дебет</small></th>
+                                    <th scope="col"><small class="head_table_2">Кредит</small></th>
+                                    <th scope="col"><small class="head_table_2">Баланс</small></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i, row in df.iterrows() %}
+                                <tr>
+                                    <th scope="row"><div class="table_row text-center">{{ i.strftime('%d-%m-%Y') }}</div></th>
+                                    {% if row.debet != 0 and row.kredit != 0 %}
+                                        <td><div class="table_row text-end">{{ row.debet }}</div></td>
+                                        <td><div class="table_row text-end">{{ row.kredit }}</div></td>
+                                    {% elif row.debet != 0 and row.kredit == 0 %}
+                                        <td><div class="table_row text-end">{{ row.debet }}</div></td>
+                                        <td></td>
+                                    {% elif row.debet == 0 and row.kredit != 0 %}
+                                        <td></td>
+                                        <td><div class="table_row text-end">{{ row.kredit }}</div></td>
+                                    {% else %}
+                                        <td></td>
+                                        <td></td>
+                                    {% endif %}
+                                    {% if row.balance >= 0 %}
+                                        <td><div class="table_row text-success text-end">{{ row.balance }}</div></td>
+                                    {% else %}
+                                        <td><div class="table_row text-danger text-end">{{ row.balance }}</div></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

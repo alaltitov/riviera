@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container col-sm-10 col-md-10 col-lg-8 col-xl-7">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash">
+                {% if category == 'register_danger' %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+       {% endif %}
+    {% endwith %}
+</div>
+
+<div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 m-4 mx-auto">
+    <form action="" method="post" novalidate>
+        <div class="row m-3 justify-content-around">
+            {{ form.csrf_token() }}
+            <h3 class="register text-center p-1">Регистрация нового жильца поселка</h3>
+            <div class="col-sm-10 col-md-7 col-lg-4 col-xl-4 p-2">
+                <div class="form-group py-1">
+                    {{ form.login.label() }}
+                    {% if form.errors['login'] %}
+                    {{ form.login(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['login'][0] }}</span>
+                    {% else %}
+                    {{ form.login(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.password.label() }}
+                    {% if form.errors['password'] %}
+                    {{ form.password(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['password'][0] }}</span>
+                    {% else %}
+                    {{ form.password(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.password1.label() }}
+                    {% if form.errors['password1'] %}
+                    {{ form.password1(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['password1'][0] }}</span>
+                    {% else %}
+                    {{ form.password1(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.pin.label() }}
+                    {% if form.errors['pin'] %}
+                    {{ form.pin(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['pin'][0] }}</span>
+                    {% else %}
+                    {{ form.pin(class_="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-10 col-md-7 col-lg-7 col-xl-7 p-2">
+                <div class="form-group py-1">
+                    {{ form.name.label() }}
+                    {% if form.errors['name'] %}
+                    {{ form.name(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['name'][0] }}</span>
+                    {% else %}
+                    {{ form.name(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.email.label() }}
+                    {% if form.errors['email'] %}
+                    {{ form.email(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['email'][0] }}</span>
+                    {% else %}
+                    {{ form.email(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.tel.label() }}
+                    {% if form.errors['tel'] %}
+                    {{ form.tel(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['tel'][0] }}</span>
+                    {% else %}
+                    {{ form.tel(class_="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group py-1">
+                    {{ form.address.label() }}
+                    {% if form.errors['address'] %}
+                    {{ form.address(class_="form-control border-danger") }}
+                    <span class="errors">{{ form.errors['address'][0] }}</span>
+                    {% else %}
+                    {{ form.address(class_="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-10 col-md-7 col-lg-4 col-xl-4 p-4">
+                <button type="submit" class="btn btn-sm btn-dark">Зарегистрироваться</button>
+            </div>
+            <div class="col-sm-10 col-md-7 col-lg-7 col-xl-7 p-4 text-end">
+                <a class="link_history text-dark" href="{{ url_for('login_page') }}">Уже зарегистрированы?</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
