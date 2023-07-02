@@ -1,9 +1,9 @@
 <p align="center">
-    <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/Logo.svg" width="200">
+    <img src="https://github.com/alaltitov/docs_riviera/raw/main/Logo.svg" width="150">
 </p>
 
 <p align="center">
-    <a href="https://www.alaltitov.ru/"></a>
+    https://riviera.alaltitov.ru/
 </p>
 
 <p align="center">
@@ -19,14 +19,14 @@
 показаний счетчиков и оплатой коммунальных платежей через Ю-Кассу с простой аналитикой, историей показаний и баланса.<br>
 
 <p align="center">
-  <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/card.png" height="300">
-  <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/chart.png" height="300">
+  <img src="https://github.com/alaltitov/docs_riviera/raw/main/card.png" height="300">
+  <img src="https://github.com/alaltitov/docs_riviera/raw/main/chart.png" height="300">
 </p>
 <p align="center">
-  <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/utility_history.png" height="250">
+  <img src="https://github.com/alaltitov/docs_riviera/raw/main/utility_history.png" height="250">
 </p>
 
-## Документация
+## Как пользоваться?
 
 Для регистрации нового пользователя необходимо ввести данные и PIN: **123456**<br>
 
@@ -43,17 +43,21 @@ password: **123**<br>
 Срок действия любой, год больше текущего, CVV любой<br>
 
 <div>
-  <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/pay4.png" height="300">
-  <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/pay5.png" height="300">
+  <img src="https://github.com/alaltitov/docs_riviera/raw/main/pay4.png" height="300">
+  <img src="https://github.com/alaltitov/docs_riviera/raw/main/pay5.png" height="300">
 </div>
 
-## Примечания
+## Документация
 
-Возможно потребуется установить urllib3 версии 1.26.6<br>
-pip install urllib3==1.26.6<br>
+Возможно потребуется установить urllib3 версии 1.26.6: **pip install urllib3==1.26.6**<br>
 С ней не возникает ошибок при использовании OpenSSL ниже версии 1.1.1+.<br>
 
 В обработчике платежей заменить страницу возврата с http://127.0.0.1/owner на https://<ваш домен>/owner
+
+## Ближайшие планы по доработке:
+
+- внедрение reCAPTCHA от Google
+- восстановление пароля
 
 ## Стек технологий
 <p align="center">
