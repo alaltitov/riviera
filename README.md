@@ -47,6 +47,14 @@ password: **123**<br>
   <img src="https://github.com/alaltitov/docs_riviera/blob/5148ea802210fc023b495d6f29133697042dff7d/pay5.png" height="300">
 </div>
 
+## Примечания
+
+Возможно потребуется установить urllib3 версии 1.26.6<br>
+pip install urllib3==1.26.6<br>
+С ней не возникает ошибок при использовании OpenSSL ниже версии 1.1.1+.<br>
+
+В обработчике платежей заменить страницу возврата с http://127.0.0.1/owner на https://<ваш домен>/owner
+
 ## Стек технологий
 <p align="center">
     <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/python/python-original.svg" width="40">
